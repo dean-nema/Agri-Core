@@ -31,8 +31,8 @@ const DoughnutChart = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-screen overflow-hidden">
-      <canvas id="doughnut-chart" style={{ width: '100%', height: 'auto' }}></canvas>
+    <div className="mx-auto w-4/5 overflow-hidden">
+      <canvas id="doughnut-chart" style={{ width: '', height: '100%' }}></canvas>
     </div>
   );
 };
