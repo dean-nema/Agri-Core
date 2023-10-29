@@ -1,6 +1,5 @@
-import Heading from "../components2/navbar";
-import farmer from "../assets/pictures/farmer.jpg";
-import firstim from "../assets/pictures/first.jpg"
+
+import firstim from "../assets/pictures/first.jpg";
 import fourthIm from "../assets/pictures/fourth.jpg";
 import Details from "../components2/HomeDetails";
 import Footer from "../components2/footer";

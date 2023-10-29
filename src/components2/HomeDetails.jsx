@@ -1,4 +1,4 @@
-import thirdIm from "../assets/pictures/third.jpg";
+import thirdIm from "../assets/pictures/second.jpg";
 
 import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/react/20/solid'
 
