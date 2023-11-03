@@ -1,20 +1,35 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import { collection, addDoc, doc} from "firebase/firestore"; 
+import { db } from "../firebase";
 
 function AddItem() {
   const [name, setName] = useState('');
   const [type, setType] = useState('');
-  const [planted, setPlanted] = useState(0);
-  const [harvested, setHarvested] = useState(0);
+  const [planted, setPlanted] = useState();
+  const [harvested, setHarvested] = useState();
   const [pesticide, setPesticide] = useState('');
   const [notes, setNotes] = useState('');
-  // const [farmID, setFarmID] = useState('');
+  const [farmID, setFarmID] = useState('');
   // const [img, setImg] = useState('');
   // const [img, setImg] = useState('');
   
   function close(){
     handleClose();
-    // console.log(name, type, );
+    
+  }
+
+  async function addData(){
+    const docRef = await addDoc(collection(db, "farmer"), {
+      name: customerName,
+      surname: customerSurname,
+    });
+    // const collGather = doc(db, "farmer", docRef.id);
+    // const cropDb= collection(collGather, "Crops");
+    // addDoc(cropDb, {
+    //   //add Data
+    // })
+    console.log("ID added"+docRef.id)
   }
 
   const [show, setShow] = useState(false);
@@ -47,7 +62,7 @@ function AddItem() {
               e.preventDefault();
               setName('');
               setType("");
-            }} id='editModal' className="w-full   max-w-sm">
+            }} id='editModal' className=" grid grid-cols-3 gap-1">
                 <div className="md:flex md:items-center mb-6">
                   <div className="md:w-1/3">
                     <label 
@@ -111,7 +126,8 @@ function AddItem() {
                     }}  
                     />
                   </div>
-              {/* <div className="md:flex md:items-center mb-6">
+            </div>
+              <div className="md:flex md:items-center mb-6 ">
                   <div className="md:w-1/3">
                     <label 
                     className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" 
@@ -131,8 +147,70 @@ function AddItem() {
                     }}  
                     />
                   </div>
-                </div> */}
-            </div>
+               </div>
+               <div className="md:flex md:items-center  mb-6 ">
+                  <div className="md:w-1/3">
+                    <label 
+                    className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" 
+                    >
+                      Pesticides
+                    </label>
+                  </div>
+                  <div className="md:w-2/3">
+                    <input 
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
+                    id="img"
+                    placeholder='Pesticides sprayed'
+                    type="text"
+                    value={pesticide}
+                    onChange={(e)=>{
+                      setPesticide(e.target.value)
+                    }}  
+                    />
+                  </div>
+               </div>
+               <div className="md:flex md:items-center  mb-6 ">
+                  <div className="md:w-1/3">
+                    <label 
+                    className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" 
+                    >
+                      FarmID
+                    </label>
+                  </div>
+                  <div className="md:w-2/3">
+                    <input 
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
+                    id="img"
+                    placeholder='Farm ID'
+                    type="text"
+                    value={farmID}
+                    onChange={(e)=>{
+                      setFarmID(e.target.value)
+                    }}  
+                    />
+                  </div>
+               </div>
+               <div className="md:flex md:items-center mb-6 col-span-2">
+                  <div className="md:w-1/4">
+                    <label 
+                    className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" 
+                    >
+                      Crop Notes
+                    </label>
+                  </div>
+                  <div className="md:w-3/4">
+                    <input 
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
+                    id="img"
+                    placeholder='Notes about the crop'
+                    type="text"
+                    value={notes}
+                    onChange={(e)=>{
+                      setNotes(e.target.value)
+                    }}  
+                    />
+                  </div>
+               </div>
         </form>
         </Modal.Body>
         <Modal.Footer className="bg-lime-500">

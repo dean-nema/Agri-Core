@@ -14,19 +14,23 @@ export default function SignIn(){
   const [customerName, setName] = useState("");
   const navigate = useNavigate();
   const [customerSurname, setSurname] = useState("");
+  const [userData, setUserData] = useState();
 
   async function addData(){
     const docRef = await addDoc(collection(db, "farmer"), {
       name: customerName,
       surname: customerSurname,
     });
-    // const collGather = doc(db, "farmer", docRef.id);
-    // const cropDb= collection(collGather, "Crops");
-    // addDoc(cropDb, {
-    //   //add Data
-    // })
-    console.log("ID added"+docRef.id)
-  }
+      setUserData(docRef);
+      console.log("ID added"+docRef.id)
+    }
+    // async function addData(){
+    //   const collGather = doc(db, "farmer", userData.id);
+    //  const cropDb= collection(collGather, "Crops");
+    //  addDoc(cropDb, {
+    //   //   //add Data
+    //    })
+    // }
   const signUP = ()=>{
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential)=>{

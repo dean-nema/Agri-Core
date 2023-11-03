@@ -11,7 +11,7 @@ export default function Heading(props){
     return(
       <div>
         <nav
-          className="relative flex w-full items-center justify-between bg-lime-950 py-2 shadow-sm shadow-neutral-700/10 dark:bg-neutral-800 dark:shadow-black/30 lg:flex-wrap lg:justify-start"
+          className="relative flex w-full items-center justify-between bg-lime-300 py-2 shadow-sm shadow-neutral-700/10 dark:bg-neutral-800 dark:shadow-black/30 lg:flex-wrap lg:justify-start"
           data-te-navbar-ref>
           {/* <!-- Container wrapper --> */}
           <div className="flex w-full flex-wrap items-center justify-between px-6">

@@ -1,12 +1,13 @@
 import { useEffect,  useState } from "react";
 import { useLocation } from "react-router-dom";
 import Nav2 from "./nav2";
-export default function Navg(props){
+import Heading from "./navbar";
+export default function Navg({setAuthentication}){
   const [showNavbar, setShowNavbar] = useState(false);
   const [showDashnav, setDashnav] = useState(false)
   const location = useLocation();
   useEffect(()=>{
-     console.log("location = " + location.pathname )
+     console.log("location = " + location.pathname );
      switch(location.pathname){
       case "/login":
         setShowNavbar(false)
@@ -27,9 +28,9 @@ export default function Navg(props){
   },[location])
  
   if(showDashnav){
-        return <div><Nav2/></div>
+        return <div><Nav2 setAutthentication={setAuthentication}/></div>
   }else if (showNavbar){
-    return <div>{props.children}</div>
+    return <div><Heading></Heading></div>
   }else{
     return <div></div>
   }

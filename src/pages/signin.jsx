@@ -2,31 +2,58 @@ import { useState } from "react";
 import {  signInWithEmailAndPassword} from "firebase/auth";
 import { auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-export default function SignIn(){
+export default function SignIn({setAuthentication}){
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate();
   
-  const signIN = ()=>{
-      signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential)=>{
-        console.log(userCredential)
-        navigate("/dashboard")
-      }).catch((error)=>{
-        console.log(error);
-      })
+  const signIN = async (e)=>{
+    e.preventDefault();
+   try{
+     await signInWithEmailAndPassword(auth, email, password)
+     Swal.fire({
+      timer: 1300,
+      showConfirmButton: false,
+      willOpen: ()=>{
+        Swal.showLoading();
+      }, 
+        willClose: ()=>{
+          localStorage.setItem('is_authenticated', true);
+          setAuthentication(true);
+          navigate('/dashboard');
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully logged in',
+            showConfirmButton: false,
+            timer: 1300,
+          });
+        }
+     });
+   
+   }catch(e){
+    Swal.fire({
+      timer: 1500,
+      showConfirmButton: false,
+      willOpen: () => {
+        Swal.showLoading();
+      },
+      willClose: () => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Incorrect email or password.',
+          showConfirmButton: true,
+        });
+      },
+    });
+   }
+      
   }
     return (
         <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
+     
       <div className=" bg-lime-400 flex  min-h-full flex-1 flex-col h-screen justify-center px-6 py-12 lg:px-8">
        
         <div className="bg-lime-500 ">

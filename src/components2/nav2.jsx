@@ -1,6 +1,10 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import Swal from 'sweetalert2';
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -13,10 +17,41 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Nav2() {
+export default function Nav2({setAutthentication}) {
+  const navigate = useNavigate();
+  async function logOff(){
+    const auth = getAuth();
+   await signOut(auth).then(() => {
+      Swal.fire({
+        icon: 'question',
+        title: 'Logging Out',
+        text: 'Are you sure you want to log out?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes'
+      }).then(result => {
+        if (result.value){
+          Swal.fire({
+            timer: 1500,
+            showConfirmButton: false,
+            willOpen: () => {
+              Swal.showLoading();
+            },
+            willClose: ()=> {
+              localStorage.setItem('is_authenticated', false);
+              setAutthentication(false);
+              navigate('/');
+            }
+          })
+        }
+      })
+    }).catch((error) => {
+      console.log("Unkown error: "+error)
+    });
+    
+  }
   return (
-    <div className="bg-gray-800 min-w-screen"> {/* Set the background color and min-height to cover the whole screen */}
-      <Disclosure as="nav" className="bg-blue-900">
+    <div className="bg-lime-800 min-w-screen"> {/* Set the background color and min-height to cover the whole screen */}
+      <Disclosure as="nav" className="bg-green-300">
         {({ open }) => (
           <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -119,8 +154,8 @@ export default function Nav2() {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
-                              className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                              onClick={logOff}
+                              className={classNames(active ? 'bg-blue-300' : '', ' hover:bg-gray-300 block px-4 py-2 text-sm text-gray-700')}
                             >
                               Sign out
                             </a>
