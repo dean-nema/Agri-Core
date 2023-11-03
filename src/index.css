@@ -67,3 +67,226 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.ADD-CROP {
+  background-color: #9ec97f;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.ADD-CROP .div {
+  background-color: #9ec97f;
+  height: 1024px;
+  overflow: hidden;
+  position: relative;
+  width: 1440px;
+}
+
+.ADD-CROP .frame-wrapper {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: -1px;
+  position: absolute;
+  top: 3px;
+  width: 1442px;
+}
+
+.ADD-CROP .component-4-wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: #4fb359;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 43px 125px;
+  position: relative;
+  width: 100%;
+}
+
+.ADD-CROP .component-4-instance {
+  align-self: stretch !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+.ADD-CROP .design-component-instance-node {
+  width: 1192px !important;
+}
+
+.ADD-CROP .component-3 {
+  left: 486px !important;
+}
+
+.ADD-CROP .component-5 {
+  left: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  width: 1192px !important;
+}
+
+.ADD-CROP .frame-2 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 95px;
+  position: absolute;
+  top: 372px;
+  width: 1250px;
+}
+
+.ADD-CROP .frame-3 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+  position: relative;
+  width: 100%;
+}
+
+.ADD-CROP .frame-4 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  height: 428px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ADD-CROP .corns-SVG-cut-file {
+  height: 428px;
+  position: relative;
+  width: 428px;
+}
+
+.ADD-CROP .frame-5 {
+  align-items: center;
+  display: flex;
+  height: 308px;
+  justify-content: flex-end;
+  margin-left: -2px;
+  position: relative;
+  width: 200px;
+}
+
+.ADD-CROP .frame-6 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 308px;
+  position: relative;
+  width: 200px;
+}
+
+.ADD-CROP .text-wrapper-2 {
+  color: #000000;
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.ADD-CROP .frame-7 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 176px;
+  margin-left: -145px;
+  position: relative;
+  width: 138px;
+}
+
+.ADD-CROP .frame-8 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 69px;
+  height: 444px;
+  position: relative;
+}
+
+.ADD-CROP .frame-9 {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 332px;
+}
+
+.ADD-CROP .rectangle-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 570px;
+}
+
+.ADD-CROP .rectangle-2 {
+  background-color: #ffffff;
+  border-radius: 30px;
+  height: 63px;
+  position: relative;
+  width: 411px;
+}
+
+.ADD-CROP .frame-10 {
+  align-items: flex-end;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 570px;
+}
+
+.ADD-CROP .frame-11 {
+  align-items: center;
+  display: flex;
+  gap: 118px;
+  height: 72px;
+  position: relative;
+  width: 446px;
+}
+
+.ADD-CROP .frame-12 {
+  align-items: flex-start;
+  background-color: #89a83f;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 72px;
+  overflow: hidden;
+  padding: 16px 37px;
+  position: relative;
+  width: 164px;
+}
+
+.ADD-CROP .frame-13 {
+  align-items: flex-end;
+  background-color: #89a83f;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 72px;
+  overflow: hidden;
+  padding: 16px 36px;
+  position: relative;
+  width: 164px;
+}

@@ -1,4 +1,3 @@
-import { Link, useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Heading(props){
@@ -6,10 +5,13 @@ export default function Heading(props){
  function goLogin(){
     navigate('/login');
  }
+ function goRegister(){
+  navigate('/register');
+}
     return(
       <div>
         <nav
-          className="relative flex w-full items-center justify-between bg-lime-950 py-2 shadow-sm shadow-neutral-700/10 dark:bg-neutral-800 dark:shadow-black/30 lg:flex-wrap lg:justify-start"
+          className="relative flex w-full items-center justify-between bg-lime-300 py-2 shadow-sm shadow-neutral-700/10 dark:bg-neutral-800 dark:shadow-black/30 lg:flex-wrap lg:justify-start"
           data-te-navbar-ref>
           {/* <!-- Container wrapper --> */}
           <div className="flex w-full flex-wrap items-center justify-between px-6">
@@ -73,7 +75,8 @@ export default function Heading(props){
               </button>
               <button type="button"
             className="inline-block rounded bg-green-700 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                data-te-ripple-init data-te-ripple-color="light">
+                data-te-ripple-init data-te-ripple-color="light"
+                onClick={goRegister}>
                 Sign up
               </button>
             </div>
