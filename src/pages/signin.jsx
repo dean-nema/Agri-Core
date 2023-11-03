@@ -9,7 +9,6 @@ export default function SignIn(){
   const navigate = useNavigate();
   
   const signIN = ()=>{
-  
       signInWithEmailAndPassword(auth, email, password)
       .then((userCredential)=>{
         console.log(userCredential)

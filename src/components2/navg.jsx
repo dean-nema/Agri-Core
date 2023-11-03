@@ -1,7 +1,6 @@
 import { useEffect,  useState } from "react";
 import { useLocation } from "react-router-dom";
 import Nav2 from "./nav2";
-import Heading from "./navbar";
 export default function Navg(props){
   const [showNavbar, setShowNavbar] = useState(false);
   const [showDashnav, setDashnav] = useState(false)
@@ -18,6 +17,9 @@ export default function Navg(props){
       case "/dashboard":
          setDashnav(true)
           break;
+      case "/crop":
+            setDashnav(true)
+             break;
       default: 
           setShowNavbar(true)
           break;

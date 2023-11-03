@@ -5,6 +5,7 @@ import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import Chart1 from '../partials/dashboard/chart1';
 import Chart2 from '../partials/dashboard/chart2';
 
+
 function Dashboard() {
   return (
     <div className="flex h-screen overflow-hidden">

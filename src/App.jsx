@@ -11,6 +11,7 @@ import Navg from './components2/navg';
 import Dashboard from './pages/dashboard';
 import AddCrop from './pages/add';
 import Signup from './pages/register';
+import CropInv from './pages/cropinv';
 function App() {
   // const [color, changeColor] = useState("#a3e635");
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/register" element={<Signup/>}/>
         <Route path="/add" element={<AddCrop/>}/>
+        <Route path="/crop" element={<CropInv/>}/>
       </Routes>
       </BrowserRouter>
     </div>

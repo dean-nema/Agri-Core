@@ -130,8 +130,8 @@ const HomePage = () => {
               className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
               src={firstim}
               alt="App screenshot"
-              // width={1824}
-              // height={1080}
+              width={1824}
+              height={1080}
             />
           </div>
         </div>

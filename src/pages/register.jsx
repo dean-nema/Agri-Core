@@ -1,42 +1,55 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword} from "firebase/auth";
 import { auth } from '../firebase';
-export default function SignIn(){
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [name, setName] = useState("")
-  const [surnmae, setSurname] = useState("")
+import { useNavigate } from "react-router-dom";
+import { collection, addDoc, doc} from "firebase/firestore"; 
+import { db } from "../firebase";
 
+
+
+
+export default function SignIn(){
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [customerName, setName] = useState("");
+  const navigate = useNavigate();
+  const [customerSurname, setSurname] = useState("");
+
+  async function addData(){
+    const docRef = await addDoc(collection(db, "farmer"), {
+      name: customerName,
+      surname: customerSurname,
+    });
+    // const collGather = doc(db, "farmer", docRef.id);
+    // const cropDb= collection(collGather, "Crops");
+    // addDoc(cropDb, {
+    //   //add Data
+    // })
+    console.log("ID added"+docRef.id)
+  }
   const signUP = ()=>{
-  
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential)=>{
         console.log(userCredential)
-        
+        navigate("/dashboard");
       }).catch((error)=>{
         console.log(error);
-      })
+      });
+     // Add data to Firestore
+    try{
+           addData()
+    }catch(e){
+          console.log(e);
+    }
   }
     return (
         <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
       <div className=" bg-lime-400 flex  min-h-full flex-1 flex-col h-screen justify-center px-6 py-12 lg:px-8">
        
         <div className="bg-lime-500 ">
 
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          {/* <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          /> */}
+         
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Create An Account
           </h2>
@@ -51,7 +64,7 @@ export default function SignIn(){
               <div className="mt-2">
                 <input
                   onChange={(e) => setName(e.target.value)}
-                value={name}
+                value={customerName}
                   id="name"
                   name="name"
                   placeholder="Name"
@@ -69,7 +82,7 @@ export default function SignIn(){
               <div className="mt-2">
                 <input
                   onChange={(e) => setSurname(e.target.value)}
-                value={surnmae}
+                value={customerSurname}
                   id="surname"
                   name="surname"
                   placeholder="Surname"
@@ -145,3 +158,7 @@ export default function SignIn(){
     </>
     );
 }
+
+
+
+

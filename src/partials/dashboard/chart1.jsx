@@ -31,6 +31,11 @@ const DoughnutChart = () => {
   return (
     <div className="mx-auto w-100%  overflow-hidden">
       <canvas id="doughnut-chart" style={{ width: 'auto', height: '100%' }}></canvas>
+      <style>{`
+        .chartjs-doughnut-label {
+          color: white !important;
+        }
+      `}</style>
     </div>
   );
 };
