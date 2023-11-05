@@ -17,7 +17,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Nav2({setAutthentication}) {
+export default function Nav2({setAutthentication, farmer}) {
   const navigate = useNavigate();
   async function logOff(){
     const auth = getAuth();
@@ -106,7 +106,7 @@ export default function Nav2({setAutthentication}) {
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                   <div className="flex space-x-4 bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium">
-                     <p>Dean Nemaramba</p>
+                     <p>{farmer.name} {farmer.surname}</p>
                   </div>
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">

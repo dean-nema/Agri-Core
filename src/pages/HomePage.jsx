@@ -15,6 +15,9 @@ const stats = [
 
 export default function HomePage({auth}){
   const navigate = useNavigate();
+  function goTo(){
+    navigate("/login");
+  }
     return (
           auth ? (
             <>
@@ -37,6 +40,7 @@ export default function HomePage({auth}){
                 AGRI-CORE<br /><span>Where Agriculture Lives</span>
               </h1>
               <button
+                onClick={goTo}
                 type="button"
                 className="rounded border-2 border-neutral-50 px-[46px] pt-[14px] pb-[12px]  bg-lime-950 text-sm font-medium uppercase leading-normal text-yellow-100 text-neutral-0 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-100 hover:bg-opacity-50 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-0"
                 data-te-ripple-init

@@ -22,7 +22,7 @@ export default function InventoryNavigation(){
           {/* image - end */}
 
           {/* image - start */}
-          <a href="#"
+          <a href="/animal"
             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
             <img src={animal} loading="lazy" alt="Photo by Magicle" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 

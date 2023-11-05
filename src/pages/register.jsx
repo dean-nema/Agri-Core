@@ -2,50 +2,132 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword} from "firebase/auth";
 import { auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc, doc} from "firebase/firestore"; 
+import { doc, setDoc} from "firebase/firestore"; 
 import { db } from "../firebase";
+import { getAuth } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import Swal from "sweetalert2";
+ 
 
 
-
-
-export default function SignIn(){
+export default function SignIn({setAuthentication}){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [customerName, setName] = useState("");
-  const navigate = useNavigate();
   const [customerSurname, setSurname] = useState("");
-  const [userData, setUserData] = useState();
+  const [customerAddress, setAddress] = useState("");
+  const [customerType, setFarmerType] = useState("");
+  const [customerRegion, setRegion] = useState("");
+  const [customerPhone, setPhone] = useState("");
+  
+  
+  const navigate = useNavigate();
+ 
+  
+  async function add(){
+    await addData2();
+    Swal.fire({
+    timer: 3000,
+    showConfirmButton: false,
+    willOpen: ()=>{
+      Swal.showLoading();
+    }, 
+      willClose: ()=>{
+        localStorage.setItem('is_authenticated', true);
+        setAuthentication(true);
+        navigate('/dashboard');
+        Swal.fire({
+          icon: 'success',
+          title: 'Successfully Registered!!',
+          showConfirmButton: false,
+          timer: 4000,
+        });
+      }
+   });
+     
+  }
 
-  async function addData(){
-    const docRef = await addDoc(collection(db, "farmer"), {
-      name: customerName,
-      surname: customerSurname,
+
+  function addData2(){
+      const auth = getAuth();
+    // Listen to the auth state changes
+     onAuthStateChanged(auth, async (user) => {
+     if (user) {
+    // User is signed in.
+        const userUID = user.uid;
+        const userData = {
+          name: customerName,
+          surname: customerSurname,
+          Phone: customerPhone,
+          Type: customerType,
+          Address: customerAddress
+        }
+        await setDoc(doc(db,"farmer", userUID), userData, {merge: true})
+        .then(()=>{
+          console.log("User and data initialised");
+        }).catch((error)=>{
+          console.error("Error adding data to firestore: ", error )
+        });
+      }
     });
-      setUserData(docRef);
-      console.log("ID added"+docRef.id)
-    }
-    // async function addData(){
-    //   const collGather = doc(db, "farmer", userData.id);
+  }
+
+
+  // async function addDetails(){
+ 
+  //   // try{
+  //   //   const farmerDocRef = doc(db, "farmer", userUID);
+  //   //   console.log("this works")
+  //   // }catch(e){
+  //   //   console.log("Something wrong");
+  //   // }
+    
+   
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     ///adding inside a collection of a collection
+    // const collGather = doc(db, "farmer", uid);
     //  const cropDb= collection(collGather, "Crops");
     //  addDoc(cropDb, {
-    //   //   //add Data
+    // ///
     //    })
-    // }
-  const signUP = ()=>{
-    createUserWithEmailAndPassword(auth, email, password)
+    
+  
+
+
+  const signUP = async ()=>{
+     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential)=>{
-        console.log(userCredential)
-        navigate("/dashboard");
+        // console.log(userCredential)
       }).catch((error)=>{
         console.log(error);
       });
      // Add data to Firestore
     try{
-           addData()
+           add();
     }catch(e){
           console.log(e);
     }
   }
+
+
+
+
+
+
     return (
         <>
       <div className=" bg-lime-400 flex  min-h-full flex-1 flex-col h-screen justify-center px-6 py-12 lg:px-8">
@@ -59,8 +141,8 @@ export default function SignIn(){
           </h2>
         </div>
 
-        <div className=" mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+        <div className=" mt-5 lg:mx-auto lg:w-full lg:max-w-lg">
+          <form className="gap-5 grid grid-cols-2" action="#" method="POST">
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Name
@@ -92,6 +174,77 @@ export default function SignIn(){
                   placeholder="Surname"
                   type="surname"
                   autoComplete="surname"
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                Address
+              </label>
+              <div className="mt-2">
+                <input
+                  onChange={(e) => setAddress(e.target.value)}
+                value={customerAddress}
+                  id="address"
+                  name="address"
+                  placeholder="Enter Your Address"
+                  type="address"
+                  autoComplete="name"
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div> <div>
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                Phone
+              </label>
+              <div className="mt-2">
+                <input
+                  onChange={(e) => setPhone(e.target.value)}
+                value={customerPhone}
+                  id="phone"
+                  name="phone"
+                  placeholder="Enter Your Phone Number"
+                  type="phone"
+                  autoComplete="phone"
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                Region
+              </label>
+              <div className="mt-2">
+                <input
+                  onChange={(e) => setRegion(e.target.value)}
+                value={customerRegion}
+                  id="region"
+                  name="region"
+                  placeholder="Region"
+                  type="region"
+                  autoComplete="region"
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                Farmer Type
+              </label>
+              <div className="mt-2">
+                <input
+                  onChange={(e) => setFarmerType(e.target.value)}
+                value={customerType}
+                  id="FarmerType"
+                  name="FarmerType"
+                  placeholder="Your Farming Type"
+                  type="FarmerType"
+                  autoComplete="FarmerType"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -139,7 +292,7 @@ export default function SignIn(){
               </div>
             </div>
 
-            <div>
+            <div className="col-span-2">
               <button
                 onClick={signUP}
                 type="button"

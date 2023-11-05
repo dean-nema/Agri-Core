@@ -2,7 +2,9 @@ import { useEffect,  useState } from "react";
 import { useLocation } from "react-router-dom";
 import Nav2 from "./nav2";
 import Heading from "./navbar";
-export default function Navg({setAuthentication}){
+
+export default function Navg({setAuthentication, farmer}){
+
   const [showNavbar, setShowNavbar] = useState(false);
   const [showDashnav, setDashnav] = useState(false)
   const location = useLocation();
@@ -21,6 +23,9 @@ export default function Navg({setAuthentication}){
       case "/crop":
             setDashnav(true)
              break;
+      case "/animal":
+            setDashnav(true)
+            break;
       default: 
           setShowNavbar(true)
           break;
@@ -28,7 +33,7 @@ export default function Navg({setAuthentication}){
   },[location])
  
   if(showDashnav){
-        return <div><Nav2 setAutthentication={setAuthentication}/></div>
+        return <div><Nav2 farmer={farmer} setAutthentication={setAuthentication}/></div>
   }else if (showNavbar){
     return <div><Heading></Heading></div>
   }else{

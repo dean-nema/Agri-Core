@@ -7,18 +7,15 @@ import Chart1 from '../partials/dashboard/chart1';
 import Chart2 from '../partials/dashboard/chart2';
 
 
-
-function Dashboard({auth}) {
+function Dashboard({authen, farmer}) {
   const navigate = useNavigate();
-
-  
   return (
-            auth ? (
+            authen ? (
             <div className="flex h-screen overflow-hidden">
             <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
               <main>
                 <div className="bg-yellow-300 px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-                  <WelcomeBanner />
+                  <WelcomeBanner farmer={farmer} />
       
                   <div className="grid grid-cols-12 gap-6">
                     {/* Doughnut chart (Top Countries) */}

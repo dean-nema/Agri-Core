@@ -27,7 +27,7 @@ export default function SignIn({setAuthentication}){
             icon: 'success',
             title: 'Successfully logged in',
             showConfirmButton: false,
-            timer: 1300,
+            timer: 4000,
           });
         }
      });

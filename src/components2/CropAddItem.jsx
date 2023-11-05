@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { collection, addDoc, doc} from "firebase/firestore"; 
+import {  doc} from "firebase/firestore"; 
 import { db } from "../firebase";
+import { setDoc } from 'firebase/firestore';
+import Swal from 'sweetalert2';
 
-function AddItem() {
+function AddItem({farmer}) {
   const [name, setName] = useState('');
   const [type, setType] = useState('');
   const [planted, setPlanted] = useState();
@@ -11,26 +13,59 @@ function AddItem() {
   const [pesticide, setPesticide] = useState('');
   const [notes, setNotes] = useState('');
   const [farmID, setFarmID] = useState('');
+  console.log(farmer);
   // const [img, setImg] = useState('');
   // const [img, setImg] = useState('');
   
   function close(){
+      try{
+
+        const docRef = doc(db, "farmer", farmer.userID, "Crops", name);
+        setDoc(docRef, {
+        Name: name,
+        Type: type,
+        Planted: +planted,
+        Harvested: +harvested,
+        Pesticide: pesticide,
+        Notes: notes,
+        FarmID: farmID
+   }, {
+    merge: true
+   });
+      console.log("Crop added");
+  }catch(e){
+          console.log("Error: "+e);
+      }
+
+
+
+ Swal.fire({
+  timer: 3000,
+  showConfirmButton: false,
+  willOpen: ()=>{
+    Swal.showLoading();
+  }, 
+    willClose: ()=>{
+      Swal.fire({
+        icon: 'success',
+        title: 'Successfully Added Crop',
+        showConfirmButton: false,
+        timer: 4000,
+      });
+    }
+ });
     handleClose();
     
   }
 
-  async function addData(){
-    const docRef = await addDoc(collection(db, "farmer"), {
-      name: customerName,
-      surname: customerSurname,
-    });
+//   async function addData(){
+
     // const collGather = doc(db, "farmer", docRef.id);
     // const cropDb= collection(collGather, "Crops");
     // addDoc(cropDb, {
     //   //add Data
     // })
-    console.log("ID added"+docRef.id)
-  }
+//  }
 
   const [show, setShow] = useState(false);
   
