@@ -1,3 +1,7 @@
+import AddItem from "../components2/CropAddItem";
+import CropView from "./cropView";
+
+
 export default function CropCard({img, crop}) {
     return (
     <div className="ml-4 bg-lime-400">
@@ -30,8 +34,8 @@ export default function CropCard({img, crop}) {
           <p className="text-white fw-bold ">
             Harvested: {}
           </p> */}
-          <a href="#" className="btn btn-secondary">
-            VIEW
+          <a className="btn btn-secondary">
+          <CropView crop={crop}/>
           </a>
         </div>
       </div>

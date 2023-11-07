@@ -32,9 +32,9 @@ function AddItem({farmer}) {
    }, {
     merge: true
    });
-      console.log("Crop added");
+      console.log(`${name} has been added`);
   }catch(e){
-          console.log("Error: "+e);
+          console.log(e);
       }
 
 
@@ -48,7 +48,7 @@ function AddItem({farmer}) {
     willClose: ()=>{
       Swal.fire({
         icon: 'success',
-        title: 'Successfully Added Crop',
+        title: `Successfully Added ${name} `,
         showConfirmButton: false,
         timer: 4000,
       });

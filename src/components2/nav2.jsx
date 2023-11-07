@@ -7,10 +7,10 @@ import { useNavigate } from 'react-router-dom';
 
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Dashboard', href: '/dashboard', current: true },
+  { name: 'Crops', href: '/crops', current: false},
+  { name: 'Animals', href: '/animals', current: false},
+  { name: 'Items', href: "/items", current: false},
 ];
 
 function classNames(...classes) {
@@ -18,6 +18,11 @@ function classNames(...classes) {
 }
 
 export default function Nav2({setAutthentication, farmer}) {
+
+
+  
+  
+ 
   const navigate = useNavigate();
   async function logOff(){
     const auth = getAuth();

@@ -9,7 +9,7 @@ export default function InventoryNavigation(){
        
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
           {/* image - start */}
-          <a href="/crop"
+          <a href="/crops"
             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
             <img src={crop} loading="lazy" alt="Photo by Minh Pham" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
@@ -22,7 +22,7 @@ export default function InventoryNavigation(){
           {/* image - end */}
 
           {/* image - start */}
-          <a href="/animal"
+          <a href="/animals"
             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
             <img src={animal} loading="lazy" alt="Photo by Magicle" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
@@ -35,7 +35,7 @@ export default function InventoryNavigation(){
           {/* image - end */}
 
           {/* image - start */}
-          <a href="#"
+          <a href="/items"
             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
             <img src={equipments} loading="lazy" alt="Photo by Martin Sanchez" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 

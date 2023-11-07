@@ -1,19 +1,35 @@
-import Card from "../components2/cropCard";
-import carrots from "../assets/pictures/carrots.jpg";
-import cabbage from "../assets/pictures/cabbage.jpg";
-import potatoes from "../assets/pictures/potatoes.jpg";
-import maize from "../assets/pictures/maize.jpg";
-import AnimalAddItem from "../components2/AnimalAddItem";
+import items from "../assets/pictures/Items.jpeg";
 import { useNavigate } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect } from "react";
 import { useState } from "react";
-import CropCard from "../components2/cropCard";
+import Swal from "sweetalert2";
+import EquipCard from "../components2/EquipCard";
+import EquipAdd from "../components2/EquipAddItem";
 
-export default  function AnimalInv({auth, farmer}) {
-    const [animal, setAnimal] = useState([]);
+export default  function Equipment({auth, farmer}) {
+    const [item, setItem] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(()=>{
+
+      Swal.fire({
+        timer: 3000,
+        showConfirmButton: false,
+        willOpen: ()=>{
+          Swal.showLoading();
+        }, 
+          willClose: ()=>{
+            Swal.fire({
+              icon: 'success',
+              title: 'Successfully Added Crop',
+              showConfirmButton: false,
+              timer: 100,
+            });
+          }
+       });
+    }, [auth, farmer]);
 
 
     useEffect(() => {
@@ -23,15 +39,15 @@ export default  function AnimalInv({auth, farmer}) {
         const fetchData = async () => {
           if (auth && farmer) {
             try {
-              const querySnapshot = await getDocs(collection(db, "farmer", farmer.userID, "Animal"));
-              const animalData = [];
+              const querySnapshot = await getDocs(collection(db, "farmer", farmer.userID, "Equipment"));
+              const equipData = [];
     
               querySnapshot.forEach((doc) => {
-                const animalData = doc.data();
-                animalData.push(animalData);
+                const data = doc.data();
+                equipData.push(data);
               });
     
-              setAnimal(animalData);
+              setItem(equipData);
             } catch (error) {
               console.error("Error fetching animal data: ", error);
             }
@@ -51,15 +67,15 @@ export default  function AnimalInv({auth, farmer}) {
                 <div className="h-10"></div>
                 <div className="h-40 bg-green-400 flex justify-center items-center">
                     <div>
-                        <h1 className="dark:text-indigo-200">ANIMAL MANAGEMENT</h1>
+                        <h1 className="dark:text-indigo-200">Inventory Management</h1>
                     </div>
                 </div>
                 <div className="h-30">
-                    <AnimalAddItem farmer={farmer} />
+                    <EquipAdd farmer={farmer} />
                 </div>
                 <div className="grid grid-cols-4 gap-x-8 gap-y-4 space-x-30 place-content-center 1qa">
-                     {animal.map((animal, index) => (
-            <CropCard key={index} img={carrots} animal={animal}/>
+                     {item.map((item, index) => (
+            <EquipCard key={index} img={items} item={item}/>
           ))}
                   
                    

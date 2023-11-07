@@ -24,53 +24,68 @@ export default function SignIn({setAuthentication}){
   const navigate = useNavigate();
  
   
-  async function add(){
-    await addData2();
-    Swal.fire({
-    timer: 3000,
-    showConfirmButton: false,
-    willOpen: ()=>{
-      Swal.showLoading();
-    }, 
-      willClose: ()=>{
-        localStorage.setItem('is_authenticated', true);
-        setAuthentication(true);
-        navigate('/dashboard');
-        Swal.fire({
-          icon: 'success',
-          title: 'Successfully Registered!!',
-          showConfirmButton: false,
-          timer: 4000,
-        });
-      }
-   });
-     
-  }
-
+ 
 
   function addData2(){
       const auth = getAuth();
     // Listen to the auth state changes
-     onAuthStateChanged(auth, async (user) => {
-     if (user) {
-    // User is signed in.
-        const userUID = user.uid;
-        const userData = {
-          name: customerName,
-          surname: customerSurname,
-          Phone: customerPhone,
-          Type: customerType,
-          Address: customerAddress
+    try{
+      onAuthStateChanged(auth, async (user) => {
+      if (user) {
+     // User is signed in.
+         const userUID = user.uid;
+         const userData = {
+           name: customerName,
+           surname: customerSurname,
+           Phone: customerPhone,
+           Type: customerType,
+           Address: customerAddress
+         }
+         await setDoc(doc(db,"farmer", userUID), userData, {merge: true})
+         .then(()=>{
+           console.log("User and data initialised");
+         }).catch((error)=>{
+           console.error("Error adding data to firestore: ", error )
+         });
+       }
+     });
+     Swal.fire({
+      timer: 1400,
+      showConfirmButton: false,
+      willOpen: ()=>{
+        Swal.showLoading();
+      }, 
+        willClose: ()=>{
+          localStorage.setItem('is_authenticated', true);
+          setAuthentication(true);
+          navigate('/dashboard');
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully Registered!!',
+            showConfirmButton: false,
+            timer: 4000,
+          });
         }
-        await setDoc(doc(db,"farmer", userUID), userData, {merge: true})
-        .then(()=>{
-          console.log("User and data initialised");
-        }).catch((error)=>{
-          console.error("Error adding data to firestore: ", error )
-        });
-      }
-    });
-  }
+     });
+    }catch(e){
+      Swal.fire({
+        timer: 1500,
+        showConfirmButton: false,
+        willOpen: () => {
+          Swal.showLoading();
+        },
+        willClose: () => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Incorrect email',
+            showConfirmButton: true,
+          });
+        },
+      });
+     }
+    }
+  
 
 
   // async function addDetails(){
@@ -85,19 +100,6 @@ export default function SignIn({setAuthentication}){
    
   // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
      ///adding inside a collection of a collection
     // const collGather = doc(db, "farmer", uid);
     //  const cropDb= collection(collGather, "Crops");
@@ -109,19 +111,38 @@ export default function SignIn({setAuthentication}){
 
 
   const signUP = async ()=>{
-     await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential)=>{
-        // console.log(userCredential)
-      }).catch((error)=>{
-        console.log(error);
-      });
-     // Add data to Firestore
     try{
-           add();
+
+      await createUserWithEmailAndPassword(auth, email, password)
+       .then((userCredential)=>{
+        addData2();
+         // console.log(userCredential)
+       }).catch((error)=>{
+         console.log(error);
+         Swal.fire({
+          timer: 100,
+          showConfirmButton: false,
+          willOpen: () => {
+            Swal.showLoading();
+          },
+          willClose: () => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: 'Incorrect Details',
+              showConfirmButton: true,
+            });
+          },
+        });
+       });
+       
+      // Add data to Firestore
+    
     }catch(e){
-          console.log(e);
-    }
+     console.log(e)
+    
   }
+}
 
 
 

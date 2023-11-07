@@ -1,6 +1,6 @@
-import Card from "../components2/cropCard";
+
 import carrots from "../assets/pictures/carrots.jpg";
-import cabbage from "../assets/pictures/cabbage.jpg";
+import cropsImg from "../assets/pictures/crops3.jpeg";
 import potatoes from "../assets/pictures/potatoes.jpg";
 import maize from "../assets/pictures/maize.jpg";
 import AddItem from "../components2/CropAddItem";
@@ -10,11 +10,32 @@ import { db } from "../firebase";
 import { useEffect } from "react";
 import { useState } from "react";
 import CropCard from "../components2/cropCard";
+import Swal from "sweetalert2";
 
 export default  function CropInv({auth, farmer}) {
     const [crops, setCrops] = useState([]);
     const navigate = useNavigate();
 
+    useEffect(()=>{
+
+      Swal.fire({
+        timer: 3000,
+        showConfirmButton: false,
+        willOpen: ()=>{
+          Swal.showLoading();
+        }, 
+          willClose: ()=>{
+            Swal.fire({
+              icon: 'success',
+              title: 'Successfully Added Crop',
+              showConfirmButton: false,
+              timer: 100,
+            });
+          }
+       });
+    }, [auth, farmer]);
+     
+  
 
     useEffect(() => {
         // Fetch crops data asynchronously
@@ -59,7 +80,7 @@ export default  function CropInv({auth, farmer}) {
                 </div>
                 <div className="grid grid-cols-4 gap-x-8 gap-y-4 space-x-30 place-content-center 1qa">
                      {crops.map((crop, index) => (
-            <CropCard key={index} img={carrots} crop={crop}/>
+            <CropCard key={index} img={cropsImg} crop={crop}/>
           ))}
                   
                    

@@ -20,12 +20,15 @@ export default function Navg({setAuthentication, farmer}){
       case "/dashboard":
          setDashnav(true)
           break;
-      case "/crop":
+      case "/crops":
             setDashnav(true)
              break;
-      case "/animal":
+      case "/animals":+
             setDashnav(true)
             break;
+      case "/items":
+              setDashnav(true)
+              break;
       default: 
           setShowNavbar(true)
           break;

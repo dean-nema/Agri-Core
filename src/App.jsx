@@ -17,6 +17,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import AnimalInv from './pages/animalInv';
+import Equipment from './pages/equipment';
 
 function App() {
   // const [color, changeColor] = useState("#a3e635");
@@ -110,8 +111,9 @@ console.log(farmerobj)
         <Route path="/login" element={<SignIn setAuthentication = {setAuthentication} />}/>
         <Route path="/dashboard" element={<Dashboard farmer={farmerobj} authen={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
         <Route path="/register" element={<Signup   setAuthentication = {setAuthentication}/>}/>
-        <Route path="/crop" element={<CropInv farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
-        <Route path="/animal" element={<AnimalInv farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
+        <Route path="/crops" element={<CropInv farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
+        <Route path="/animals" element={<AnimalInv farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
+        <Route path="/items" element={<Equipment farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
       </Routes>
       </BrowserRouter>
     </div>
