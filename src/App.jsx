@@ -18,6 +18,9 @@ import { db } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import AnimalInv from './pages/animalInv';
 import Equipment from './pages/equipment';
+import Copy from './pages/task';
+import Profile from './pages/profile';
+import Experiment from './components2/animalView';
 
 function App() {
   // const [color, changeColor] = useState("#a3e635");
@@ -67,9 +70,6 @@ function App() {
       }
   };
  
- 
-
-
   
     useEffect(() => {
       const fetchData = async () => {
@@ -114,6 +114,9 @@ console.log(farmerobj)
         <Route path="/crops" element={<CropInv farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
         <Route path="/animals" element={<AnimalInv farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
         <Route path="/items" element={<Equipment farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
+        <Route path="/tasks" element={<Copy farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
+        <Route path="/profile" element={<Profile farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
+        <Route path="/animalView" element={<Experiment farmer={farmerobj} auth={isAuthenticated} setAuthentication = {setAuthentication}/>}/>
       </Routes>
       </BrowserRouter>
     </div>

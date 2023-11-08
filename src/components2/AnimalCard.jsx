@@ -1,4 +1,12 @@
-export default function AnimalCard({img, animal}) {
+import Experiment from "./animalView";
+import AnimalView from "./animalView";
+import { useNavigate } from "react-router-dom";
+
+export default function AnimalCard({img, animal, farmer}) {
+  const navigate = useNavigate()
+  function openView(){
+   navigate('/animalView')
+  }
     return (
     <div className="ml-4 bg-lime-400">
 
@@ -30,8 +38,8 @@ export default function AnimalCard({img, animal}) {
           <p className="text-white fw-bold ">
             Harvested: {}
           </p> */}
-          <a href="#" className="btn btn-secondary">
-            VIEW
+          <a onClick={openView} className='btn btn-secondary'>
+          View
           </a>
         </div>
       </div>

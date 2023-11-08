@@ -44,12 +44,14 @@ export default  function Equipment({auth, farmer}) {
     
               querySnapshot.forEach((doc) => {
                 const data = doc.data();
+                const documentId = doc.id;
+                data.id = documentId;
                 equipData.push(data);
               });
     
               setItem(equipData);
             } catch (error) {
-              console.error("Error fetching animal data: ", error);
+              console.error("Error fetching inventory data: ", error);
             }
           }
         };
@@ -75,7 +77,7 @@ export default  function Equipment({auth, farmer}) {
                 </div>
                 <div className="grid grid-cols-4 gap-x-8 gap-y-4 space-x-30 place-content-center 1qa">
                      {item.map((item, index) => (
-            <EquipCard key={index} img={items} item={item}/>
+            <EquipCard farmer={farmer} key={index} img={items} item={item}/>
           ))}
                   
                    

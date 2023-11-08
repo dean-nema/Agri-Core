@@ -1,8 +1,6 @@
-import AddItem from "../components2/CropAddItem";
-import CropView from "./cropView";
+import CropView1 from "./cropView";
 
-
-export default function CropCard({img, crop}) {
+export default function CropCard({img,farmer, crop}) {
     return (
     <div className="ml-4 bg-lime-400">
 
@@ -27,15 +25,8 @@ export default function CropCard({img, crop}) {
             <h5 className="text-white">{crop.Planted}</h5>
            <h5 className="text-white">{crop.Harvested}</h5>
           </div>
-          
-          {/* <p className="text-white fw-bold ">
-            Planted: {}
-          </p>
-          <p className="text-white fw-bold ">
-            Harvested: {}
-          </p> */}
-          <a className="btn btn-secondary">
-          <CropView crop={crop}/>
+          <a>
+          <CropView1 farmer={farmer} crop={crop}/>
           </a>
         </div>
       </div>

@@ -13,7 +13,7 @@ function AddItem({farmer}) {
   const [pesticide, setPesticide] = useState('');
   const [notes, setNotes] = useState('');
   const [farmID, setFarmID] = useState('');
-  console.log(farmer);
+ 
   // const [img, setImg] = useState('');
   // const [img, setImg] = useState('');
   
@@ -33,39 +33,33 @@ function AddItem({farmer}) {
     merge: true
    });
       console.log(`${name} has been added`);
+      Swal.fire({
+        timer: 3000,
+        showConfirmButton: false,
+        willOpen: ()=>{
+          Swal.showLoading();
+        }, 
+          willClose: ()=>{
+            Swal.fire({
+              icon: 'success',
+              title: `Successfully Added ${name} `,
+              showConfirmButton: false,
+              timer: 4000,
+            });
+          }
+       });
   }catch(e){
           console.log(e);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `Could not Add ${name}`
+          });
       }
-
-
-
- Swal.fire({
-  timer: 3000,
-  showConfirmButton: false,
-  willOpen: ()=>{
-    Swal.showLoading();
-  }, 
-    willClose: ()=>{
-      Swal.fire({
-        icon: 'success',
-        title: `Successfully Added ${name} `,
-        showConfirmButton: false,
-        timer: 4000,
-      });
-    }
- });
     handleClose();
     
   }
 
-//   async function addData(){
-
-    // const collGather = doc(db, "farmer", docRef.id);
-    // const cropDb= collection(collGather, "Crops");
-    // addDoc(cropDb, {
-    //   //add Data
-    // })
-//  }
 
   const [show, setShow] = useState(false);
   
@@ -97,6 +91,11 @@ function AddItem({farmer}) {
               e.preventDefault();
               setName('');
               setType("");
+              setFarmID("")
+              setHarvested("")
+              setNotes("")
+              setPesticide("")
+              setPlanted("")
             }} id='editModal' className=" grid grid-cols-3 gap-1">
                 <div className="md:flex md:items-center mb-6">
                   <div className="md:w-1/3">

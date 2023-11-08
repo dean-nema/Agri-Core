@@ -11,8 +11,10 @@ export default function SignIn({setAuthentication}){
   
   const signIN = async (e)=>{
     e.preventDefault();
+   
    try{
      await signInWithEmailAndPassword(auth, email, password)
+     console.log("Finished signing")
      Swal.fire({
       timer: 1300,
       showConfirmButton: false,

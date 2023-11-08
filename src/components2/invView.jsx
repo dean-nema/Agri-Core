@@ -6,17 +6,17 @@ import { setDoc } from 'firebase/firestore';
 import Swal from 'sweetalert2';
 import {deleteDoc } from "firebase/firestore";
 
-function CropView1({farmer, crop}) {
+function InventoryView({farmer, item}) {
 
-  const [name, setName] = useState(crop.Name);
-  const [type, setType] = useState(crop.Type);
-  const [planted, setPlanted] = useState(crop.Planted);
-  const [harvested, setHarvested] = useState(crop.Harvested);
-  const [pesticide, setPesticide] = useState(crop.Pesticide);
-  const [notes, setNotes] = useState(crop.Notes);
-  const [farmID, setFarmID] = useState(crop.FarmID);
+  const [name, setName] = useState(item.Name);
+  const [type, setType] = useState(item.Type);
+  const [cost, setCost] = useState(item.Cost);
+  const [quantity, setQuantity] = useState(item.Quantity);
+  const [supplier, setSupplier] = useState(item.Supplier);
+  const [condition, setCondition] = useState(item.Condition);
+  const [brand, setBrand] = useState("");
   const [editMode, setEdit] = useState(false)
- 
+
   function showEdit(){
     setEdit(true)
   }
@@ -32,8 +32,8 @@ function CropView1({farmer, crop}) {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try{
-          var itemName = crop.id;
-          await deleteDoc(doc(db, "farmer", farmer.userID, "Crops", crop.id));
+          var itemName = item.Name;
+          await deleteDoc(doc(db, "farmer", farmer.userID, "Equipment", item.id));
           Swal.fire({
             timer: 3000,
             showConfirmButton: false,
@@ -43,7 +43,7 @@ function CropView1({farmer, crop}) {
             willClose: () => {
               Swal.fire({
                 icon: 'success',
-                title: `Successfully Deleted `,
+                title: `Successfully Deleted ${item.Name}`,
                 showConfirmButton: false,
                 timer: 4000,
               });
@@ -51,11 +51,11 @@ function CropView1({farmer, crop}) {
           });
           handleClose();
         }catch(e){
-          console.log("Failed to delete: " + itemName + " \n because of "+ e );
+          console.log("Failed to delete: " + item.Name + " \n because of "+ e );
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: `Could not Delete ${itemName}`
+            text: `Could not Delete ${item.Name}`
           });
       
       }    
@@ -66,15 +66,16 @@ function CropView1({farmer, crop}) {
 
   function update() {
     try {
-      const docRef = doc(db, "farmer", farmer.userID, "Crops", name);
+      const docRef = doc(db, "farmer", farmer.userID, "Equipment", item.id);
       setDoc(docRef, {
         Name: name,
         Type: type,
-        Planted: +planted,
-        Harvested: +harvested,
-        Pesticide: pesticide,
-        Notes: notes,
-        FarmID: farmID
+        Cost: +cost,
+        Quantity: +quantity,
+        Supplier: supplier,
+        Condition: condition,
+        Brand: brand
+        
       }, {
         merge: true
       });
@@ -128,7 +129,7 @@ function CropView1({farmer, crop}) {
         keyboard={false}
       >
         <Modal.Header closeButton className='bg-lime-500 h-max'>
-          <Modal.Title>{crop.Name} Details</Modal.Title>
+          <Modal.Title>{item.Name} Details</Modal.Title>
         </Modal.Header>
         <Modal.Body className='bg-lime-200'>
           <form onSubmit={(e) => {
@@ -147,7 +148,7 @@ function CropView1({farmer, crop}) {
               <input 
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
               id="name"
-              placeholder={crop.Type}
+              placeholder={item.Type}
               type="text"
               value={type}
               onChange={(e)=> {
@@ -155,7 +156,7 @@ function CropView1({farmer, crop}) {
               }}
               />
             ) :(<span className="bg-lime-100 inline-block border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
-              {crop.Type}
+              {item.Type}
             </span>) 
            }
           </div>
@@ -171,7 +172,7 @@ function CropView1({farmer, crop}) {
              <input 
              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
              id="name"
-             placeholder={crop.Name}
+             placeholder={item.Name}
              type="text"
              value={name}
              onChange={(e)=>{
@@ -180,7 +181,7 @@ function CropView1({farmer, crop}) {
              />
            ):
            (<span className="bg-lime-100 inline-block border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
-              {crop.Name}
+              {item.Name}
             </span>)
             }
           </div>
@@ -188,7 +189,32 @@ function CropView1({farmer, crop}) {
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-              Planted
+              Brand
+            </label>
+          </div>
+          <div className="md:w-2/3">
+           { editMode ? (
+             <input 
+             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
+             id="name"
+             placeholder={item.Brand}
+             type="text"
+             value={brand}
+             onChange={(e)=>{
+               setBrand(e.target.value)
+             }}  
+             />
+           ):
+           (<span className="bg-lime-100 inline-block border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
+              {item.Brand}
+            </span>)
+            }
+          </div>
+        </div>
+        <div className="md:flex md:items-center mb-6">
+          <div className="md:w-1/3">
+            <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+              Cost
             </label>
           </div>
           <div className="md:w-2/3">
@@ -196,17 +222,17 @@ function CropView1({farmer, crop}) {
              <input 
              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
              id="img"
-             placeholder={crop.Planted}
+             placeholder={item.Cost}
              type="text"
-             value={planted}
+             value={cost}
              onChange={(e)=>{
-               setPlanted(e.target.value)
+               setCost(e.target.value)
              }}  
              />
            )
            :
            ( <span className="bg-lime-100 inline-block border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
-              {crop.Planted}
+              {item.Cost}
             </span>)
             }
           </div>
@@ -214,7 +240,7 @@ function CropView1({farmer, crop}) {
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-              Harvested
+              Quantity
             </label>
           </div>
           <div className="md:w-2/3">
@@ -222,17 +248,17 @@ function CropView1({farmer, crop}) {
               <input 
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
               id="img"
-              placeholder={crop.Harvested}
+              placeholder={item.Quantity}
               type="text"
-              value={harvested}
+              value={quantity}
               onChange={(e)=>{
-                setHarvested(e.target.value)
+                setQuantity(e.target.value)
               }}  
               />
             )
             :
             (<span className="bg-lime-100 inline-block border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
-              {crop.Harvested}
+              {item.Quantity}
             </span>)
             }
           </div>
@@ -240,7 +266,7 @@ function CropView1({farmer, crop}) {
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-              Pesticides
+              Supplier
             </label>
           </div>
           <div className="md:w-2/3">
@@ -248,17 +274,17 @@ function CropView1({farmer, crop}) {
              <input 
              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
              id="img"
-             placeholder={crop.Pesticide}
+             placeholder={item.Supplier}
              type="text"
-             value={pesticide}
+             value={supplier}
              onChange={(e)=>{
-               setPesticide(e.target.value)
+               setSupplier(e.target.value)
              }}  
              />
            )
            :
            (<span className="bg-lime-100 inline-block border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
-              {crop.Pesticide}
+              {item.Supplier}
             </span>)
             }
           </div>
@@ -266,7 +292,7 @@ function CropView1({farmer, crop}) {
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-              FarmID
+              Date
             </label>
           </div>
           <div className="md:w-2/3">
@@ -274,17 +300,17 @@ function CropView1({farmer, crop}) {
               <input 
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
               id="img"
-              placeholder={crop.FarmID}
+              placeholder={item.Date}
               type="text"
-              value={farmID}
+              value={brand}
               onChange={(e)=>{
-                setFarmID(e.target.value)
+                setBrand(e.target.value)
               }}  
               />
            )
            :
            ( <span className="bg-lime-100 inline-block border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
-              {crop.FarmID}
+              {item.Date}
             </span>)
             }
           </div>
@@ -292,7 +318,7 @@ function CropView1({farmer, crop}) {
         <div className="md:flex md:items-center mb-6 col-span-2">
           <div className="md:w-1/4">
             <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-              Crop Notes
+              Condition
             </label>
           </div>
           <div className="md-w-3/4">
@@ -300,16 +326,16 @@ function CropView1({farmer, crop}) {
                <input 
                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" 
                id="img"
-               placeholder={crop.Notes}
+               placeholder={item.Condition}
                type="text"
-               value={notes}
+               value={condition}
                onChange={(e)=>{
-                 setNotes(e.target.value)
+                 setCondition(e.target.value)
                }}  
                />
            ) :
             (<span className="bg-lime-100 inline-block border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
-              {crop.Notes}
+              {item.Condition}
             </span>)
             }
           </div>
@@ -346,4 +372,4 @@ function CropView1({farmer, crop}) {
   );
 }
 
-export default CropView1;
+export default InventoryView;

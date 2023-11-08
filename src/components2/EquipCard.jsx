@@ -1,4 +1,6 @@
-export default function EquipCard({img, item}) {
+import InventoryView from "./invView";
+
+export default function EquipCard({farmer, img, item}) {
     return (
     <div className="ml-4 bg-lime-400">
 
@@ -30,8 +32,8 @@ export default function EquipCard({img, item}) {
           <p className="text-white fw-bold ">
             Harvested: {}
           </p> */}
-          <a href="#" className="btn btn-secondary">
-            VIEW
+          <a>
+            <InventoryView farmer={farmer} item={item}/>
           </a>
         </div>
       </div>

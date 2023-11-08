@@ -67,3 +67,83 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+  .container {
+  position: relative;
+  width: 700px;
+  height: 600px;
+  background-color: black;
+  border: 1px solid #bbb;
+  border-top: none;
+  border-right: none;
+  margin-top: 100px;
+  }
+  .v-meter {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 500px;
+  }
+  .v-meter li {
+  position: relative;
+  height: 100px;
+  border-right: 1px solid #1785a7;
+  text-align: right;
+  line-height: 100px;
+  color: #fff;
+  }
+  
+  .bar {
+  position: absolute;
+  width: 50px;
+  background-color: #328036;
+  bottom: 0;
+  }
+  .bar.one {
+  left: 100px;
+  height: 200px;
+  }
+  .bar.two {
+  left: 200px;
+  height: 400px;
+  }
+  .bar.three {
+  left: 300px;
+  height: 100px;
+  }
+  .axis-label {
+  position: absolute;
+  color: #fff;
+  font-size: 20px;
+  }
+  .x-label {
+  bottom: -30px;
+  left: 250px;
+  }
+  .y-label {
+  top: 50%;
+  left: -70px;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+  }
+  .bar-label {
+  position: absolute;
+  color: #fff;
+  font-size: 16px;
+  
+  }
+  .label-one {
+  top: 550px;
+  left: 100px;
+  }
+  .label-two {
+  top: 550px;
+  left: 200px;
+  }
+  .label-three {
+  top: 550px;
+  left: 300px;
+  }
+
+  

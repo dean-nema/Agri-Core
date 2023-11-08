@@ -27,7 +27,7 @@ export default  function CropInv({auth, farmer}) {
           willClose: ()=>{
             Swal.fire({
               icon: 'success',
-              title: 'Successfully Added Crop',
+              title: 'Successful',
               showConfirmButton: false,
               timer: 100,
             });
@@ -48,11 +48,19 @@ export default  function CropInv({auth, farmer}) {
               const cropsData = [];
     
               querySnapshot.forEach((doc) => {
-                const cropData = doc.data();
+                const cropData = doc.data();             
+                 // Access the document ID using doc.id
+                const documentId = doc.id;
+
+                // You can add the document ID to your cropData if needed
+                cropData.id = documentId;
+
                 cropsData.push(cropData);
               });
+              
     
               setCrops(cropsData);
+             
             } catch (error) {
               console.error("Error fetching crops data: ", error);
             }
@@ -80,7 +88,7 @@ export default  function CropInv({auth, farmer}) {
                 </div>
                 <div className="grid grid-cols-4 gap-x-8 gap-y-4 space-x-30 place-content-center 1qa">
                      {crops.map((crop, index) => (
-            <CropCard key={index} img={cropsImg} crop={crop}/>
+            <CropCard key={index} farmer={farmer} img={cropsImg} crop={crop}/> 
           ))}
                   
                    
@@ -94,12 +102,3 @@ export default  function CropInv({auth, farmer}) {
     );
 }
 
-
-{/* <Card img={cabbage} name={"Cabbage"} />
-<Card img={maize} name={"Maize"} />
-<Card img={potatoes} name={"Potatoes"} />
-<Card img={potatoes} name={"Potatoes"} />
-<Card img={potatoes} name={"Potatoes"} />
-<Card img={potatoes} name={"Potatoes"} />
-<Card img={potatoes} name={"Potatoes"} />
-<Card img={potatoes} name={"Potatoes"} /> */}

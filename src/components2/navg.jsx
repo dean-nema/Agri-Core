@@ -29,6 +29,12 @@ export default function Navg({setAuthentication, farmer}){
       case "/items":
               setDashnav(true)
               break;
+      case "/tasks": 
+              setDashnav(true)
+              break;
+      case "/animalView": 
+              setDashnav(true)
+              break;
       default: 
           setShowNavbar(true)
           break;
