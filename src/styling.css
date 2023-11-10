@@ -1,0 +1,181 @@
+
+  .task-header{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+    font-size: 30px;
+    font-weight: bold;
+    display: inline-block;
+    margin-left:0px;
+    margin-right:700px;
+  }
+  p{
+    font-family: 'Lato';
+  }
+  button:not(.react-calendar__tile){
+    transition: transform 0.2s;
+    border:none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  button:hover{
+    transform: scale(1.05); 
+    cursor: pointer;
+  }
+  .first-row{
+    display:grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap:0px;
+   
+  }
+  .first-task, .second-task2{
+    background-color: #A3E635 ;
+    width: 300px;
+    height:200px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-top: 20px;
+  
+  }
+  .second-task, .third-task2{
+    background-color: #33CC99;
+    width: 300px;
+    height:200px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-top: 20px;
+  }
+  .third-task, .first-task2{
+    background-color: #4ADE80;
+    width: 300px;
+    height:200px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-top: 20px;
+  }
+  .line1{
+    margin-right: 0px;
+  }
+  .line2{
+    margin-left:0px;
+  }
+  .calender{
+    background-color: #FBFBFD;
+  }
+  /* CSS for the dropdown */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left:200px;
+    margin-top: 0px;
+  }
+  
+  .three-dots {
+    cursor: pointer;
+    font-size:20px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .dropdown.active{
+    display:block;
+  }
+  
+  .dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+  }
+  .a1:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .a2:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  /* Show the dropdown content when hovering over the three dots */
+  .dropdown:hover .dropdown-content {
+    display: block;
+    cursor: pointer;
+  }
+  .task-name{
+    display: block;
+    
+  }
+  .adding-task-button{
+    height: 50px;
+    width: 150px;
+    display: inline-block;
+    margin-right:300px;
+    background-color: #16A34A;
+  }
+  .adding-task-button:hover{
+    cursor: pointer;
+  }
+  .positive{
+    font-weight: bold;
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  /* Add these styles to your CSS file */
+  .modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    background-color: #D9F99D;
+  }
+  
+  .modal-content {
+    position: relative;
+    background-color: #D9F99D;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    border-radius: 5px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .modal-name, .modal-description, .modal-date{
+    display: inline-block;
+    
+  }
+  .span{  
+    display: block;
+  }
+  .input-tasks{
+    height:50px;
+    width:400px;
+    border-radius: 20px;
+    margin-bottom:20px;
+    background-color: #000;
+    color:white;
+  }
+  .input-tasks:focus{
+    background-color: #fff; /* Light background color when input is focused */
+    color: #000; /* Text color when input is focused */
+  }
+  .modal-add-tasks-button{
+    height:30px;
+    width:80px;
+    background-color: #9333EA;
+  }

@@ -36,7 +36,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+button{
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -147,3 +147,485 @@ button:focus-visible {
   }
 
   
+  
+
+
+
+
+
+
+
+
+
+  .task-header{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+    font-size: 30px;
+    font-weight: bold;
+    display: inline-block;
+    margin-left:0px;
+    margin-right:700px;
+  }
+  p{
+    font-family: 'Lato';
+  }
+  button:not(.react-calendar__tile){
+    transition: transform 0.2s;
+    border:none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  button:hover{
+    transform: scale(1.05); 
+    cursor: pointer;
+  }
+  .first-row{
+    display:grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap:0px;
+   
+  }
+  .first-task, .second-task2{
+    background-color: #A3E635 ;
+    width: 300px;
+    height:200px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-top: 20px;
+  
+  }
+  .second-task, .third-task2{
+    background-color: #33CC99;
+    width: 300px;
+    height:200px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-top: 20px;
+  }
+  .third-task, .first-task2{
+    background-color: #4ADE80;
+    width: 300px;
+    height:200px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-top: 20px;
+  }
+  .line1{
+    margin-right: 0px;
+  }
+  .line2{
+    margin-left:0px;
+  }
+  .calender{
+    background-color: #FBFBFD;
+  }
+  /* CSS for the dropdown */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left:200px;
+    margin-top: 0px;
+  }
+  
+  .three-dots {
+    cursor: pointer;
+    font-size:20px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .dropdown.active{
+    display:block;
+  }
+  
+  .dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+  }
+  .a1:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .a2:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  /* Show the dropdown content when hovering over the three dots */
+  .dropdown:hover .dropdown-content {
+    display: block;
+    cursor: pointer;
+  }
+  .task-name{
+    display: block;
+    
+  }
+  .adding-task-button{
+    height: 50px;
+    width: 150px;
+    display: inline-block;
+    margin-right:300px;
+    background-color: #16A34A;
+  }
+  .adding-task-button:hover{
+    cursor: pointer;
+  }
+  .positive{
+    font-weight: bold;
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  /* Add these styles to your CSS file */
+  .modal2 {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    background-color: #D9F99D;
+  }
+  
+  .modal-content2 {
+    position: relative;
+    background-color: #D9F99D;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    border-radius: 5px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .modal-name, .modal-description, .modal-date{
+    display: inline-block;
+    
+  }
+  .span{  
+    display: block;
+  }
+  .input-tasks{
+    height:50px;
+    width:400px;
+    border-radius: 20px;
+    margin-bottom:20px;
+    background-color: #000;
+    color:white;
+  }
+  .input-tasks:focus{
+    background-color: #fff; /* Light background color when input is focused */
+    color: #000; /* Text color when input is focused */
+  }
+  .modal-add-tasks-button{
+    height:30px;
+    width:80px;
+    background-color: #9333EA;
+  }
+
+
+
+
+
+
+  .button-1{
+    position: relative;
+    background-color: #A3E635;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.5s, font-size 0.3s;
+    margin: 10px;
+    transform: scaleX(1);
+    z-index: 1;
+    height: 400px;
+   
+  }
+  .button-2{
+    position: relative;
+    background-color:#33CC99 ;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.5s, font-size 0.3s;
+    margin: 10px;
+    transform: scaleX(1);
+    z-index: 1;
+    margin-top: 0px;
+    margin-left:0px;
+    width: 600px;
+    
+   
+  }
+  .button-3 {
+    position: relative;
+    background-color: #4ADE80;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.5s, font-size 0.3s;
+    margin: 10px;
+    transform: scaleX(1);
+    z-index: 1;
+  
+  }
+  
+  .expanded {
+    position: relative;
+    z-index: 2;
+    transform: scaleX(1.1); /* Expands horizontally by 20% */
+    font-size: 15px;
+    transition: transform 0.9s, font-size 0.3s;
+    height: 100%;
+  }
+  
+  .expanded-right {
+    transform: scaleX(1.1); /* Expands Button 1 to the right */
+    font-size: 15px;
+    transition: transform 0.9s, font-size 0.3s;
+    z-index: 2;
+    height: 100%;
+  }
+  
+  .expanded-left {
+    transform: scaleX(1.1) ; /* Expands Button 3 to the left */
+    font-size: 15px;
+    transition: transform 0.9s, font-size 0.3s;
+    z-index: 2;
+    height: 100%;
+  }
+  .vaccination{
+    height: 400px;
+    margin-top: 0px;
+    transition: transform 0.2s;
+    
+  }
+  .vaccination:hover{
+    transform: scale(1.05); 
+    cursor: pointer;
+  }
+  .div-with-description:hover{
+    transform: scale(1.05); 
+    cursor: pointer;
+  }
+  .div-with-description{
+    
+    transition: transform 0.2s;
+  }
+  .top-heading{
+    font-size: 30px;
+    margin: 0;
+    font-weight: 10px;
+    font-family: 'nunito';
+    margin-bottom: 10px;
+  }
+  .desc-image{
+    transition: transform 0.2s;
+  }
+  .desc-image:hover{
+    transform: scale(1.05); 
+  }
+  .span-text{
+    display: grid;
+    grid-template-columns: 20% 10% 30% 40%;
+    gap:0px;
+    transition: transform 0.2s;
+  }
+  .span-text:hover{
+    transform: scale(1.05); 
+    cursor: pointer;
+  }
+  .description-text{
+    margin-top:0px;
+    transition: transform 0.2s;
+    font-size: 20px;
+    margin-bottom: 50px;
+  }
+  .description-text:hover{
+    transform: scale(1.01); 
+    cursor: pointer;
+  }
+  .description-text-symbols{
+    margin-top: 0px;
+    display: inline-block;
+    font-size: 30px;
+    
+  }
+  .add-vac{
+    height: 50px;
+    width: 150px;
+    display: inline-block;
+    margin-right:300px;
+    background-color: #6C757D;
+    float: left;
+  }
+  .edit-description{
+    height: 50px;
+    width: 150px;
+    display: inline-block;
+    background-color: #6C757D;
+    
+  }
+  .div-with-the-descriptions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 1000px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.5s, font-size 0.3s;
+  }
+  .div-with-the-names{
+   
+    /*transition: transform 0.2s;*/
+  
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.5s, font-size 0.3s;
+  }
+  
+  
+  .top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .top-left {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .top-right {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .page-container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    height: 100vh;
+    gap:0px;
+  }
+  
+  .bottom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    gap:0px;
+  }
+  .pic-animal{
+    margin-bottom: 100px;
+  }
+  .image-of-animal-in-description{
+    height:600px;
+    width: 600px;
+    margin-bottom: 0px;
+    
+  }
+  .modalk {
+    position: fixed;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the popup */
+    background: #fff; /* Background color for the popup */
+    padding: 20px;
+    z-index: 1001; /* Ensure it's above the overlay */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 80%; /* Adjust the maximum width as needed */
+    max-height: 80%; /* Adjust the maximum height as needed */
+    overflow-y: auto; /* Enable vertical scrolling if the content overflows */
+    background-color: #D9F99D;
+    display: grid;
+    grid-template-rows: 10% 70%;
+    width: 1000px;
+    height: 550px;
+  }
+  
+  .modal-contentk {
+    position: relative;
+    background-color: #D9F99D;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    border-radius: 5px;
+    margin-top: 0px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .modal-name, .modal-description, .modal-date{
+    display: inline-block;
+  }
+  .span{
+    display: block;
+  }
+  .input-tasks{
+    height:50px;
+    width:400px;
+    border-radius: 20px;
+    margin-bottom:20px;
+    
+  }
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    z-index: 1000; /* Ensure it's above other content */
+  }
+  .overlay.active {
+    display: block;
+  }
+  .enter{
+    height: 50px;
+    width: 200px;
+    display: inline-block;
+    display: inline-block;
+  border-radius: 10px;
+  border: none;
+  margin-right: 20px;
+  margin-left: 15px;
+  background-color: #000;
+  transition: background-color 0.3s;
+  color:white;
+  }
+  .enter:focus{
+    background-color: #fff; /* Light background color when input is focused */
+    color: #000; /* Text color when input is focused */
+  }
+  .just-color{
+    background-color:#84CC16;
+    margin-bottom:0px;
+  }

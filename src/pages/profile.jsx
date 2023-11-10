@@ -2,8 +2,8 @@ import { Component } from "react";
 
 
 class Profile extends Component {
-    constructor(props) {
-        super(props);
+    constructor({farmer}) {
+        super({farmer});
         this.state = {};
     }
 
@@ -87,7 +87,7 @@ class Profile extends Component {
                                         <ul>
                                             <li className="phone">
                                                 <h1 className="label">Phone:</h1>
-                                                <span className="info">+267 75055659</span>
+                                                <span className="info">{farmer.Phone}</span>
                                             </li>
 
                                             <li className="address">

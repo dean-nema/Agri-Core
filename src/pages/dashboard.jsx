@@ -5,7 +5,6 @@ import CardLineChart from '../components2/salesGraph';
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import Chart1 from '../partials/dashboard/chart1';
 import Chart2 from '../partials/dashboard/chart2';
-import BarGraph from '../components2/lebo';
 import Calendar from '../components2/calendar';
 
 
@@ -26,7 +25,7 @@ function Dashboard({authen, farmer}) {
                     </div>
                     {/* Line chart (Acme Advanced) */}
                     <div className="col-span-12 lg:col-span-4">
-                      <Chart2/>
+                      <Chart2 farmer={farmer}/>
                     </div>
                     {/* Line chart (Acme Professional) */}
                     <div className=" bg-green-600 col-span-12 lg:col-span-4">

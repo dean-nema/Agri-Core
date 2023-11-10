@@ -10,7 +10,7 @@ const dataDoughnut = {
     datasets: [
       {
         label: 'CROPS',
-        data: [2112, 2343, 2545, 3423, 2365, 1985, 987],
+        data: [300, 200, 100, 23, 30, 103, 902],
         backgroundColor: [
           'rgba(63, 81, 181, 0.5)',
           'rgba(77, 182, 172, 0.5)',

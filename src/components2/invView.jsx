@@ -14,7 +14,8 @@ function InventoryView({farmer, item}) {
   const [quantity, setQuantity] = useState(item.Quantity);
   const [supplier, setSupplier] = useState(item.Supplier);
   const [condition, setCondition] = useState(item.Condition);
-  const [brand, setBrand] = useState("");
+  const [date, setDate] = useState(item.Date);
+  const [brand, setBrand] = useState(item.Brand);
   const [editMode, setEdit] = useState(false)
 
   function showEdit(){
@@ -74,7 +75,8 @@ function InventoryView({farmer, item}) {
         Quantity: +quantity,
         Supplier: supplier,
         Condition: condition,
-        Brand: brand
+        Brand: brand,
+        Date: date
         
       }, {
         merge: true
@@ -302,9 +304,9 @@ function InventoryView({farmer, item}) {
               id="img"
               placeholder={item.Date}
               type="text"
-              value={brand}
+              value={date}
               onChange={(e)=>{
-                setBrand(e.target.value)
+                setDate(e.target.value)
               }}  
               />
            )

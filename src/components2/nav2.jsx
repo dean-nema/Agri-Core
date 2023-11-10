@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import profile from "../assets/pictures/profile.svg";
+import logo from "../assets/pictures/applogo.png";
 
 
 
@@ -79,7 +80,7 @@ export default function Nav2({setAutthentication, farmer}) {
                   <div className="flex flex-shrink-0 items-center">
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  src={logo}
                       alt="Your Company"
                     />
                   </div>
@@ -140,7 +141,7 @@ export default function Nav2({setAutthentication, farmer}) {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href="/profile"
                               className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                             >
                               Your Profile

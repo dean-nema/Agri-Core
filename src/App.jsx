@@ -22,6 +22,7 @@ import Copy from './pages/task';
 import Profile from './pages/profile';
 import Experiment from './components2/animalView';
 
+
 function App() {
   // const [color, changeColor] = useState("#a3e635");
 
@@ -36,12 +37,13 @@ function App() {
   class Farmer {
 
        userID;
-    constructor (name, surname, region, phone, type ) {
+    constructor (name, surname, region, phone, type,address ) {
         this.name = name;
         this.surname = surname;
         this.region = region;
         this.phone = phone;
         this.type = type;
+        this.address = address
        
     }
        setID(userID){
@@ -60,13 +62,14 @@ function App() {
               surname: farmer.surname,
               Region: farmer.region,
               Phone: farmer.phone,
-              Type: farmer.type
+              Type: farmer.type,
+              Address: farmer.address
 
               };
       },
       fromFirestore: (snapshot, options) => {
           const data = snapshot.data(options);
-          return new Farmer(data.name, data.surname, data.Region, data.Phone, data.Type,);
+          return new Farmer(data.name, data.surname, data.Region, data.Phone, data.Type, data.Address);
       }
   };
  

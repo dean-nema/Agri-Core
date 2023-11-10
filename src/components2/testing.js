@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 // Create a CSS file for your component styles
 
-class Copy extends Component {
+class Copy1 extends Component {
   constructor(props) {
     super(props);
 
@@ -151,8 +151,8 @@ class Copy extends Component {
             </div>
           )}
             {this.state.isModalOpen && (
-            <div className="modal2">
-              <div className="modal-content2">
+            <div className="modal">
+              <div className="modal-content">
                 <span className="close" onClick={this.closeModal}>&times;</span>
                 {/* Add your modal content here */}
                 <h2>Add a Task</h2>
@@ -352,4 +352,4 @@ class Copy extends Component {
   }
 }
 
-export default Copy;
+export default Copy1;

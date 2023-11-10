@@ -7,6 +7,7 @@ import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import Swal from "sweetalert2";
+import { data } from "autoprefixer";
  
 
 
@@ -30,6 +31,7 @@ export default function SignIn({setAuthentication}){
       const auth = getAuth();
     // Listen to the auth state changes
     try{
+      
       onAuthStateChanged(auth, async (user) => {
       if (user) {
      // User is signed in.
@@ -67,6 +69,7 @@ export default function SignIn({setAuthentication}){
           });
         }
      });
+    
     }catch(e){
       Swal.fire({
         timer: 1500,
@@ -78,44 +81,32 @@ export default function SignIn({setAuthentication}){
           Swal.fire({
             icon: 'error',
             title: 'Error!',
-            text: 'Incorrect email',
+            text: 'Incorrect email or invalid details',
             showConfirmButton: true,
           });
         },
       });
      }
+
     }
   
 
 
-  // async function addDetails(){
  
-  //   // try{
-  //   //   const farmerDocRef = doc(db, "farmer", userUID);
-  //   //   console.log("this works")
-  //   // }catch(e){
-  //   //   console.log("Something wrong");
-  //   // }
-    
-   
-  // }
-
-     ///adding inside a collection of a collection
-    // const collGather = doc(db, "farmer", uid);
-    //  const cropDb= collection(collGather, "Crops");
-    //  addDoc(cropDb, {
-    // ///
-    //    })
-    
-  
 
 
   const signUP = async ()=>{
     try{
-
+      const dataHolder = [customerAddress, customerName, customerPhone, customerRegion,customerSurname,customerType]
+      for(let i of  dataHolder){
+           if(i === ''){
+            throw "error"
+           }
+      }
       await createUserWithEmailAndPassword(auth, email, password)
-       .then((userCredential)=>{
-        addData2();
+      .then((userCredential)=>{
+         addData2();
+        
          // console.log(userCredential)
        }).catch((error)=>{
          console.log(error);
@@ -140,12 +131,23 @@ export default function SignIn({setAuthentication}){
     
     }catch(e){
      console.log(e)
-    
+     Swal.fire({
+      timer: 100,
+      showConfirmButton: false,
+      willOpen: () => {
+        Swal.showLoading();
+      },
+      willClose: () => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Incorrect Details',
+          showConfirmButton: true,
+        });
+      },
+    });
   }
 }
-
-
-
 
 
 

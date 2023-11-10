@@ -1,17 +1,16 @@
 
-import { Link } from 'react-router-dom';
-
-
-function Chart2() {
+function Chart2({farmer}) {
+	console.log(farmer)
   return (
     <div className="flex justify-center">
 	<div
 		className="card  min-w-sm max-w-sm border border-gray-100 bg-gray-50   transition-shadow test  shadow-lg hover:shadow-shadow-xl w-full bg-green-600 text-purple-50 rounded-md">
-		<h2 className="text-md mb-2 px-4 pt-4">
-			<div className="flex justify-between">
-				<div className="badge relative top-0">
-					<span className="mt-2 py-1 h-12px text-md font-semibold w-12px  rounded right-1 bottom-1 px-4">Weather</span></div>
-				<span className="text-lg font-bold ">6:13</span>
+		<h2 className="text-md text-black mb-2 px-4 pt-4">	
+			<div className="flex text-black justify-between">
+				<div className="badge  text-black relative top-0">
+					<span className="mt-2 py-1 h-12px text-md font-semibold w-12px text-black rounded right-1 bottom-1 px-4"></span></div>
+				
+				<span className="text-lg font-bold ">{farmer.address}</span>
 			</div>
 		</h2>
 	
